@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia-APP</title>
+    
+</head>
+
+<body onload="loadCat()">
+    <main>
+        <section class="options">
+            <select id="sCategory" ">
+                <option selected>Select Category</option>                                
+            </select>
+            <select id="sDifficulty">
+                <option selected>Select Difficulty</option>         
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <select id="sType">
+                <option selected>Select Type</option>         
+                <option value="multiple">Multiple Choice</option>
+                <option value="boolean">True / False</option>
+            </select>
+            <button id="sendOptions">Enviar opciones</button>
+        </section>
+        
+        <section id="questions">
+
+        </section>
+        <section id="resultsbtn"></section>
+    </main>
+    <script src="./script.js"></script>
+</body>
+
+</html>
