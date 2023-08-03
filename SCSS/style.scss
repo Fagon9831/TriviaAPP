@@ -1,0 +1,94 @@
+@mixin flexible($dis , $direction , $just , $align ) {
+    display: $dis;
+    flex-direction: $direction;
+    justify-content: $just;
+    align-items: $align;
+}
+
+@mixin fuentes($size , $weight , $color) {
+    font-size: $size;
+    font-weight: $weight;
+    color: $color ;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;    
+}
+
+@mixin buttons($radius, $color, $padding, $margin, $border) {
+    border-radius: $radius;
+    background-color: $color;
+    padding: $padding;
+    margin: $margin;
+    border: $border;
+}
+@mixin responsive($medida : 510px){
+    @media screen and (max-width: $medida ){
+        @content;
+    }
+}
+body{
+    background-image: url("../Images/Fondo1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    @include flexible(flex,column,flex-start ,center );
+    @include responsive(){ height: 100%;};     
+}
+
+main{
+    width: 70vw;    
+    @include buttons(25px, rgba(153, 151, 151, 0.726) ,5px ,5px ,1px solid white );    
+    @include flexible(flex,column,flex-start ,center );
+    box-shadow:  1px 1px 10px 5px#bebebe;    
+    
+}
+select{
+    @include fuentes(17px,normal ,black );       
+    @include buttons(5px, rgb(207, 205, 205),5px ,2px ,1px solid white );        
+    @include responsive(){width: 65vw};
+}
+button{
+    @include fuentes(17px,600 ,white);
+    @include buttons(7px,rgb(29, 62, 250),7px,5px,1px solid grey);
+    &:hover{
+        cursor: pointer;
+        @include buttons(7px,rgb(18, 35, 136),7px,5px,1px solid white);
+    }
+}
+                
+.section{        
+    &-options{
+    @include flexible(flex,row ,flex-start ,center );
+    flex-wrap: wrap;
+    @include responsive(){@include flexible(flex,row ,center ,center );};     
+    }
+    &-questions{ 
+        
+        @include fuentes(17px,normal ,black );       
+        margin-top: 25px;    
+        margin-left: 3%;
+        margin-right: 3%;
+        &__question{                        
+            margin-left: 0.1px;            
+        }
+        select{                           
+            width: 50vw;
+        }
+    }
+    &-resultsbtn{        
+        margin-top: 10px;        
+        @include flexible(flex,column,center ,center );
+        p,input{        
+            @include fuentes(20px,bold ,black );                                        
+        }
+        input{
+            @include buttons(7px,rgba(153, 151, 151, 0.726),7px,5px,1px solid white);
+        }
+        
+        button{
+            @include fuentes(17px,600 ,white);
+            @include buttons(7px,#28ce5f,7px,5px,1px solid white);
+            &:hover{
+                @include buttons(7px,#1a7e3b,7px,5px,1px solid white);
+            }
+        }                
+    }
+}
+

@@ -11,18 +11,18 @@ const loadCat = async () => {
     //console.log(result.trivia_categories);
     for (let i in result.trivia_categories) {
         let option = document.createElement("option");
-        option.classList.add("categories");
+        option.classList.add("section-sCategory__Categories");
         option.value = result.trivia_categories[i].id
         option.innerHTML += `${result.trivia_categories[i].name}`
-        document.querySelector("#sCategory").appendChild(option);
+        document.querySelector(".section-options__scategory").appendChild(option);
     }
 }
 
 const showQuestions = async () => {
     ////https://opentdb.com/api.php?amount=11&category=9&difficulty=medium&type=multiple
-    let oCate = document.getElementById("sCategory").value
-    let oDiff = document.getElementById("sDifficulty").value
-    let oTyp = document.getElementById("sType").value
+    let oCate = document.getElementsByClassName("section-options__scategory").value
+    let oDiff = document.getElementsByClassName("section-options__sdfficulty").value
+    let oTyp = document.getElementsByClassName("section-options__stype").value
     let opt = ""
     if (oCate == "Select Category" || oDiff == "Select Difficulty" || oTyp == "Select Type") {
         if (oCate != "Select Category") {
@@ -43,8 +43,8 @@ const showQuestions = async () => {
 }
 
 const create = (results) => {
-    document.querySelector("#questions").innerHTML=""
-    document.querySelector("#resultsbtn").innerHTML=""
+    document.querySelector(".section-questions").innerHTML=""
+    document.querySelector(".section-resultsbtn").innerHTML=""
 
     for (let i in results) {
         let optionsS = ""
@@ -53,21 +53,18 @@ const create = (results) => {
         console.log(optionsS)
 
         let div2 = document.createElement("div");
-        div2.classList.add("question");
-        div2.innerHTML += `
-            <div class="setenceQue">
-                <p id="p${i}">${results[i].question}</p>            
-            </div>`
-        document.querySelector("#questions").appendChild(div2);
+        div2.classList.add("section-questions__question");
+        div2.innerHTML += `<p id="p${i}">${results[i].question}</p>`
+        document.querySelector(".section-questions").appendChild(div2);
 
         let js=0
         let option2 =document.createElement("select")
         option2.setAttribute("id","q"+i)
-        document.querySelector("#questions").appendChild(option2);
+        document.querySelector(".section-questions").appendChild(option2);
        
         optionsS.forEach(()=>{
             option2.innerHTML+=`<option>${optionsS[js]}</option>`
-            document.querySelector("#questions").appendChild(option2);
+            document.querySelector(".section-questions").appendChild(option2);
             js++
         });
     }
@@ -75,14 +72,14 @@ const create = (results) => {
     btnSucces.setAttribute("id","btnSucces2")
     btnSucces.textContent="Validar Respuestas"
     btnSucces.addEventListener("click",validate)
-    document.querySelector("#resultsbtn").appendChild(btnSucces);
+    document.querySelector(".section-resultsbtn").appendChild(btnSucces);
 }
 
 const validate = () => {
     let result= rtas.results
     let m=0
     let points=0
-    console.log(rtas.results)
+//    console.log(rtas.results)
 
     result.forEach(()=>{
             let etiqueta=document.getElementById("q"+m)            
@@ -97,21 +94,21 @@ const validate = () => {
     })
     let lResult =document.createElement("p")
     lResult.textContent="Su calificacion final es :"
-    document.getElementById("resultsbtn").appendChild(lResult)
+    document.querySelector(".section-resultsbtn").appendChild(lResult)
     let inputRest=document.createElement("input")   
     inputRest.value=points
     inputRest.disabled=true    
-    document.getElementById("resultsbtn").appendChild(inputRest)
+    document.querySelector(".section-resultsbtn").appendChild(inputRest)
 
     let createNewTest=document.createElement("button")   
     createNewTest.textContent="Create new Test"
     createNewTest.addEventListener("click",()=>{
-        document.getElementById("questions").innerHTML=""
-        document.getElementById("resultsbtn").innerHTML=""
+        document.querySelector(".section-questions").innerHTML=""
+        document.querySelector(".section-resultsbtn").innerHTML=""
     })
-    document.getElementById("resultsbtn").appendChild(createNewTest)
+    document.querySelector(".section-resultsbtn").appendChild(createNewTest)
     window.alert("Su calificacion es: "+points+"/1000")
 }
 
-let sendOpt = document.getElementById('sendOptions');
+let sendOpt = document.querySelector(".section-options__btn");
 sendOpt.addEventListener("click", showQuestions);

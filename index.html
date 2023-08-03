@@ -5,33 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trivia-APP</title>
-    
+    <link rel="stylesheet" href="./SCSS/style.css">
 </head>
 
 <body onload="loadCat()">
     <main>
-        <section class="options">
-            <select id="sCategory" ">
+        <section class="section-options">
+            <select class="section-options__scategory">
                 <option selected>Select Category</option>                                
             </select>
-            <select id="sDifficulty">
+            <select class="section-options__sdifficulty">
                 <option selected>Select Difficulty</option>         
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
             </select>
-            <select id="sType">
+            <select class="section-options__stype">
                 <option selected>Select Type</option>         
                 <option value="multiple">Multiple Choice</option>
                 <option value="boolean">True / False</option>
             </select>
-            <button id="sendOptions">Enviar opciones</button>
+            <button class="section-options__btn" id="options__btn">Enviar opciones</button>
         </section>
         
-        <section id="questions">
+        <section class="section-questions">
 
         </section>
-        <section id="resultsbtn"></section>
+        <section class="section-resultsbtn"></section>
     </main>
     <script src="./script.js"></script>
 </body>
